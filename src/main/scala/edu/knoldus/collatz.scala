@@ -27,13 +27,29 @@ class Activity {
     }
   }
 
-  def computationPerformed(list: List[Int]): List[Int] = {
+ def computationPerformed(list: List[Int]): List[Int] = {
+
     val element = list(0)
     element match {
       case 1 => list
-      case element if (element % 2 == 0) => computationPerformed(element / 2 :: list)
-      case _ => computationPerformed((3 * element) + 1 :: list)
+      case element if (element % 2 == 0) => {val newElement = element / 2
+                                              if(elementContainInList(list, newElement))
+                                                list
+                                              else
+                                                computationPerformed(newElement :: list)}
+      case _ => {val newElement = 3 * element + 1
+                 if(elementContainInList(list, newElement))
+                   list
+                 else
+                   computationPerformed(newElement :: list)}
+    }
 
+  }
+
+  def elementContainInList(list: List[Int], element: Int): Boolean = {
+    list match {
+      case head :: tail if (head == element) => true
+      case _ => false
     }
   }
     
