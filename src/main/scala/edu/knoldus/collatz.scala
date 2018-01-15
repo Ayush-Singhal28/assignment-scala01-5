@@ -22,7 +22,7 @@ object Activity {
 class Activity {
   def collatzEquation(inputValue: Int, list: List[Int]): List[Int] = {
     list match {
-      case Nil => list.::(inputValue)
+      case Nil => computationPerformed(inputValue :: list)
       case head :: tail => computationPerformed(list)
     }
   }
